@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ros_anomaly_detector</name>
+  <version>0.1.0</version>
+  <description>ROS Anomaly Detector</description>
+
+
+  <maintainer email="narayave@oregonstate.edu">Vedanth Narayanan</maintainer>
+
+  <license>BSD</license>
+  <!-- <url type="website">http://wiki.ros.org/ros_anomaly_detector</url> -->
+  <url type="repository">https://github.com/narayave/ros_anomaly_detector</url>
+  <author email="narayave@oregonstate.edu">Vedanth Narayanan</author>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
