@@ -8,10 +8,6 @@ File:
 Date:
 	14 May, 2018
 
-
-TODO:
-	-
-
 '''
 
 
@@ -73,8 +69,8 @@ if __name__ == "__main__":
 		supervised_train_file = local["Files"]["supervised_train"]
 		testing_file = local["Files"]["testing"]
 
-	clf_ocsvm19 = svm.OneClassSVM(nu=0.05, kernel="rbf", gamma=1000)
-	unsupervised_models.append(('ocsvm19', clf_ocsvm19))
+	clf_ocsvm18 = svm.OneClassSVM(nu=0.06, kernel="rbf", gamma=1100)
+	unsupervised_models.append(('ocsvm18', clf_ocsvm18))
 
 	clf_rbfsvmbest_3 = svm.SVC(kernel='rbf', gamma=100, C=100000)
 	supervised_models.append(('rbfsvmbest_3', clf_rbfsvmbest_3))
@@ -99,6 +95,4 @@ if __name__ == "__main__":
 
 	# graph_3d(x, s_preds[0])
 
-
 	reduce_graph_3d(x, u_preds[0])
-	# reduce_graph_3d(x, u_preds[1])

@@ -26,7 +26,7 @@ from time import sleep
 def call_collector(topic, output, label):
 	print 'Calling collector'
 
-	comm = "rosrun anomaly_detector data_collect.py " + topic + ' ' \
+	comm = "rosrun ros_anomaly_detector data_collect.py " + topic + ' ' \
 				+ output + ' ' + str(label)
 
 	listen = subprocess.Popen(comm, shell=True)
@@ -48,7 +48,7 @@ def call_train(py_script):
 def call_operate(topic, modelname, threshold):
 	print 'Operation mode activated'
 
-	comm = "rosrun anomaly_detector monitor.py " + topic \
+	comm = "rosrun ros_anomaly_detector monitor.py " + topic \
 				+ " " + modelname + " " + threshold
 
 	monitor = subprocess.Popen(comm, shell=True)

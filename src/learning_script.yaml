@@ -12,19 +12,10 @@ Files:
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   testing:
-    - name: 'data/original_10.csv'
+    - name: 'data/original_30.csv'
       input_col: [0, 1, 2, 3, 4, 5]
       output_col: [6]
     - name: 'data/rbfsvm_train_30.csv'
-      input_col: [0, 1, 2, 3, 4, 5]
-      output_col: [6]
-    - name: 'data/rbf_validate_orig20.csv'
-      input_col: [0, 1, 2, 3, 4, 5]
-      output_col: [6]
-    - name: 'data/test_safe_plus_002-01.csv'
-      input_col: [0, 1, 2, 3, 4, 5]
-      output_col: [6]
-    - name: 'data/test_safe_plus_002-01_v2.csv'
       input_col: [0, 1, 2, 3, 4, 5]
       output_col: [6]
 

@@ -1,23 +1,23 @@
 <launch>
 	<!-- Testing purposes-->
-	<include file="$(find move_mh5)/launch/exp.launch" />
+	<!-- <include file="$(find move_mh5)/launch/exp.launch" /> -->
 
 	<!-- COLLECT MODE -->
-	<include file="$(find anomaly_detector)/launch/module.launch">
+	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
 		<arg name="comm_arg" value="-collect" />
 		<arg name="other_args" value="'/joint_states' 'collecting2.csv' 0" />
-	</include>
-
-
-	<!-- TRAIN MODE -->
-	<!-- <include file="$(find anomaly_detector)/launch/module.launch">
-		<arg name="comm_arg" value="-train" />
-		<arg name="other_args" value="'run.py'" />
 	</include> -->
 
 
+	<!-- TRAIN MODE -->
+	<include file="$(find ros_anomaly_detector)/launch/module.launch">
+		<arg name="comm_arg" value="-train" />
+		<arg name="other_args" value="'run.py'" />
+	</include>
+
+
 	<!-- OPERATE MODE -->
-	<!-- <include file="$(find anomaly_detector)/launch/module.launch">
+	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
 		<arg name="comm_arg" value="-operate" />
 		<arg name="other_args" value="'/joint_states' rbfsvmbest_3.pkl 0.02" />
 	</include> -->

@@ -16,6 +16,7 @@ import numpy as np
 from output_matrix import OutputMatrix
 from sklearn.externals import joblib
 import rospy
+from pprint import pprint
 
 
 class AnomalyDetector(object):
@@ -152,21 +153,23 @@ class AnomalyDetector(object):
 		'''
 		predictions = model[1].predict(data)
 
-		if mod_type == 'unsupervised':
-			for i in xrange(len(predictions)):
-				# print predictions[i]
-				if predictions[i] == 1:
-					predictions[i] = 0
-				else:
-					predictions[i] = 1
+		pprint(predictions)
 
-		if mod_type == 'supervised':
-			for i in xrange(len(predictions)):
-				# print predictions[i]
-				if predictions[i] == 1:
-					predictions[i] = 1
-				else:
-					predictions[i] = 0
+		# if mod_type == 'unsupervised':
+		# 	for i in xrange(len(predictions)):
+		# 		# print predictions[i]
+		# 		if predictions[i] == 1:
+		# 			predictions[i] = 0
+		# 		else:
+		# 			predictions[i] = 1
+
+		# if mod_type == 'supervised':
+		# 	for i in xrange(len(predictions)):
+		# 		# print predictions[i]
+		# 		if predictions[i] == 1:
+		# 			predictions[i] = 1
+		# 		else:
+		# 			predictions[i] = 0
 
 
 		errs = predictions[predictions == 1].size
@@ -181,11 +184,11 @@ class AnomalyDetector(object):
 
 		# NOTE: This is to make sure predictions are all 0 and 1s.
 		#		0 is benign/expected. 1 is an anomaly.
-		for i in xrange(len(predictions)):
-			if predictions[i] == 1:
-				predictions[i] = 1
-			else:
-				predictions[i] = 0
+		# for i in xrange(len(predictions)):
+		# 	if predictions[i] == 1:
+		# 		predictions[i] = 1
+		# 	else:
+		# 		predictions[i] = 0
 
 		oc_errors = predictions[predictions == 1].size
 		print 'OCSVM errors: ', 100*float(oc_errors)/data.shape[0]
@@ -195,11 +198,11 @@ class AnomalyDetector(object):
 	def rbfsvm_predict(self, data):
 		predictions = self.__sup_clfs[0][1].predict(data)
 
-		for i in xrange(len(predictions)):
-			if predictions[i] == 1:
-				predictions[i] = 1
-			else:
-				predictions[i] = 0
+		# for i in xrange(len(predictions)):
+		# 	if predictions[i] == 1:
+		# 		predictions[i] = 1
+		# 	else:
+		# 		predictions[i] = 0
 
 		rbf_errors = predictions[predictions == 1].size
 		print 'RBFSVM errors: ', 100*float(rbf_errors)/data.shape[0]

@@ -3,7 +3,7 @@
 	<arg name="comm_arg" />
 	<arg name="other_args" />
 
-	<node name="main" pkg="anomaly_detector" type="main.py"
+	<node name="main" pkg="ros_anomaly_detector" type="main.py"
 		output="screen" args="$(arg comm_arg) $(arg other_args)" cwd='node'/>
 
 </launch>

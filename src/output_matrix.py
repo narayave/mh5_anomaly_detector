@@ -127,13 +127,14 @@ class OutputMatrix(object):
 		count_train = len(true_y)
 		tpos = fpos = tneg = fneg = 0
 		for i in xrange(count_train):
-			if (pred_y[i] == 1) and (true_y[i, 0] == 1):
+			# print pred_y[i], true_y[i, 0]
+			if (pred_y[i] == -1) and (true_y[i, 0] == -1):
 				tpos += 1
-			elif (pred_y[i] == 1) & (true_y[i, 0] == 0):
+			elif (pred_y[i] == -1) & (true_y[i, 0] == 1):
 				fpos += 1
-			elif (pred_y[i] == 0) & (true_y[i, 0] == 0):
+			elif (pred_y[i] == 1) & (true_y[i, 0] == 1):
 				tneg += 1
-			elif (pred_y[i] == 0) & (true_y[i, 0] == 1):
+			elif (pred_y[i] == 1) & (true_y[i, 0] == -1):
 				fneg += 1
 
 
@@ -149,21 +150,21 @@ class OutputMatrix(object):
 		self.set_confusion_matrix(tpos, fpos, tneg, fneg)
 		self.set_measures()
 
-		# print 'Confusion Matrix - '
-		# print '\ttpos: \t', "{:.4f}".format(tpos)
-		# print '\tfpos: \t', "{:.4f}".format(fpos)
-		# print '\ttneg: \t', "{:.4f}".format(tneg)
-		# print '\tfneg: \t', "{:.4f}".format(fneg)
-		# # print '\tleft: ', "{:.3f}".format(left)
-		# print '\taccuracy: \t', "{:.4f}".format(self.get_accuracy())
-		# print '\trecall: \t', "{:.4f}".format(self.get_recall())
-		# print '\tprecision: \t', "{:.4f}".format(self.get_precision())
-		# print '\tf1measure: \t', "{:.4f}".format(self.get_f1measure())
+		print 'Confusion Matrix - '
+		print '\ttpos: \t', "{:.4f}".format(tpos)
+		print '\tfpos: \t', "{:.4f}".format(fpos)
+		print '\ttneg: \t', "{:.4f}".format(tneg)
+		print '\tfneg: \t', "{:.4f}".format(fneg)
+		# print '\tleft: ', "{:.3f}".format(left)
+		print '\taccuracy: \t', "{:.4f}".format(self.get_accuracy())
+		print '\trecall: \t', "{:.4f}".format(self.get_recall())
+		print '\tprecision: \t', "{:.4f}".format(self.get_precision())
+		print '\tf1measure: \t', "{:.4f}".format(self.get_f1measure())
 
-		print 'Benign/Attack:\t', "{:.4f}".format(benign), '\t', "{:.4f}".format(attack)
-		if attack > 0.22:
-			print '\tDETECT'
-		else:
-			print '\tBenign'
+		# print 'Benign/Attack:\t', "{:.4f}".format(benign), '\t', "{:.4f}".format(attack)
+		# if attack > 0.22:
+		# 	print '\tDETECT'
+		# else:
+		# 	print '\tBenign'
 
 		print ''
