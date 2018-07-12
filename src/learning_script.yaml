@@ -4,11 +4,11 @@ Files:
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   unsupervised_train:
-    name: Null #'data/original_30.csv'
+    name: 'data/original_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   supervised_train:
-    name: 'data/rbfsvm_train_30.csv'
+    name: Null #'data/rbfsvm_train_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   testing:
@@ -20,4 +20,4 @@ Files:
       output_col: [6]
 
 Operations:
-  reduction: 3
+  reduction: 0

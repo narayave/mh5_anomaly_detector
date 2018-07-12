@@ -21,22 +21,14 @@ from pprint import pprint
 
 class AnomalyDetector(object):
 
-	def __init__(self,
-			unsup_models = [('OC SVM', svm.OneClassSVM(nu=0.001, kernel="rbf", gamma=21))],
-			sup_models = [('RBF SVM', svm.SVC(kernel='rbf', gamma=1000, C=100000))]):
+	def __init__(self, unsup_models, sup_models):
+			# unsup_models = [('OC SVM', svm.OneClassSVM(nu=0.001, kernel="rbf", gamma=21))],
+			# sup_models = [('RBF SVM', svm.SVC(kernel='rbf', gamma=1000, C=100000))]):
 		self.__unsup_clfs = unsup_models
 		self.__sup_clfs = sup_models
 		self.outputMat__ = OutputMatrix()
 		rospy.set_param('unsupervised_model', str(['None']))
 		rospy.set_param('supervised_model', str(['None']))
-
-
-	# TODO: This was to help with graphing
-	def get_OCSVM(self):
-		return self.__unsup_clfs[0][1]
-
-	def get_RBFSVM(self):
-		return self.__sup_clfs[0][1]
 
 
 	def fit_supervised_models(self, sup_train_x, sup_train_y):
@@ -99,17 +91,6 @@ class AnomalyDetector(object):
 		rospy.set_param('supervised_model', str(super_clfs))
 
 
-	def classify(self, data_x):
-		'''
-			Pass in a set of data and get predictions for 2 models
-		'''
-		print 'data_X', data_x.shape
-		ocsvm_predictions = self.ocsvm_predict(data_x)
-		rbfsvm_predictions = self.rbfsvm_predict(data_x)
-
-		return ocsvm_predictions, rbfsvm_predictions
-
-
 	def classify_supervised(self, data):
 		'''
 			Get predictions for unsupervised models.
@@ -119,7 +100,7 @@ class AnomalyDetector(object):
 		all_preds = []
 		for i in xrange(0, len(self.__sup_clfs)):
 			model = self.__sup_clfs[i]
-			preds = self.__classify('supervised', model, data)
+			preds = self.__classify(model, data)
 			all_preds.append(preds)
 
 		all_preds = np.array(all_preds)
@@ -136,7 +117,7 @@ class AnomalyDetector(object):
 		all_preds = []
 		for i in xrange(0, len(self.__unsup_clfs)):
 			model = self.__unsup_clfs[i]
-			preds = self.__classify('unsupervised', model, data)
+			preds = self.__classify(model, data)
 			all_preds.append(preds)
 
 		all_preds = np.array(all_preds)
@@ -144,7 +125,7 @@ class AnomalyDetector(object):
 		return all_preds
 
 
-	def __classify(self, mod_type, model, data):
+	def __classify(self, model, data):
 		'''
 			Given a model, prediction is made.
 
@@ -153,60 +134,11 @@ class AnomalyDetector(object):
 		'''
 		predictions = model[1].predict(data)
 
-		pprint(predictions)
-
-		# if mod_type == 'unsupervised':
-		# 	for i in xrange(len(predictions)):
-		# 		# print predictions[i]
-		# 		if predictions[i] == 1:
-		# 			predictions[i] = 0
-		# 		else:
-		# 			predictions[i] = 1
-
-		# if mod_type == 'supervised':
-		# 	for i in xrange(len(predictions)):
-		# 		# print predictions[i]
-		# 		if predictions[i] == 1:
-		# 			predictions[i] = 1
-		# 		else:
-		# 			predictions[i] = 0
-
 
 		errs = predictions[predictions == 1].size
 		print model[0] + ' Errors: ', 100*float(errs)/data.shape[0]
 		return predictions
 
-
-	def ocsvm_predict(self, data):
-		''' Spit out predictions in '''
-		# print data.shape
-		predictions = self.__unsup_clfs[0][1].predict(data)
-
-		# NOTE: This is to make sure predictions are all 0 and 1s.
-		#		0 is benign/expected. 1 is an anomaly.
-		# for i in xrange(len(predictions)):
-		# 	if predictions[i] == 1:
-		# 		predictions[i] = 1
-		# 	else:
-		# 		predictions[i] = 0
-
-		oc_errors = predictions[predictions == 1].size
-		print 'OCSVM errors: ', 100*float(oc_errors)/data.shape[0]
-		return predictions
-
-
-	def rbfsvm_predict(self, data):
-		predictions = self.__sup_clfs[0][1].predict(data)
-
-		# for i in xrange(len(predictions)):
-		# 	if predictions[i] == 1:
-		# 		predictions[i] = 1
-		# 	else:
-		# 		predictions[i] = 0
-
-		rbf_errors = predictions[predictions == 1].size
-		print 'RBFSVM errors: ', 100*float(rbf_errors)/data.shape[0]
-		return predictions
 
 
 	def call_output(self, true_y, pred_y):
