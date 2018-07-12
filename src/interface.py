@@ -19,8 +19,8 @@ NOTE:
 from pprint import pprint
 import yaml
 from sklearn import svm
-from data_process import DataProcess
 
+from data_process import DataProcess
 from anomaly_detector import AnomalyDetector
 from data_persist import DataPersist
 
@@ -89,13 +89,13 @@ class Interface(object):
 		'''
 
 		if self.__unsupervised_train_file["name"]:
-			self.preprocess_data_helper(self.__unsupervised_train_file)
+			self.__preprocess_data_helper(self.__unsupervised_train_file)
 
 		if self.__supervised_train_file["name"]:
-			self.preprocess_data_helper(self.__supervised_train_file)
+			self.__preprocess_data_helper(self.__supervised_train_file)
 
 
-	def preprocess_data_helper(self, item):
+	def __preprocess_data_helper(self, item):
 		'''
 			NOTE: Can only be called if __ready_processor has been called.
 				It should be, when the instance is created.
@@ -154,8 +154,8 @@ class Interface(object):
 
 		for item in self.__testing:
 			print item["name"]
-			self.preprocess_data_helper(item)
-			usup_preds, sup_preds = self.testing_predictions_helper(item)
+			self.__preprocess_data_helper(item)
+			usup_preds, sup_preds = self.__testing_predictions_helper(item)
 
 			u_preds.append(usup_preds)
 			s_preds.append(sup_preds)
@@ -163,7 +163,7 @@ class Interface(object):
 		return u_preds, s_preds
 
 
-	def testing_predictions_helper(self, item):
+	def __testing_predictions_helper(self, item):
 
 		unsuper_preds, super_preds = [], []
 
@@ -186,12 +186,3 @@ class Interface(object):
 
 	def retrieve_data(self, loc):
 		return self.__data_persist.retrieve_dumped_data(loc)
-
-
-	# NOTE: The following are to help with graphing
-
-	def get_OCSVM(self):
-		return self.__anomaly_classifier.get_OCSVM()
-
-	def get_RBFSVM(self):
-		return self.__anomaly_classifier.get_RBFSVM()
