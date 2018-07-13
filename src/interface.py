@@ -131,8 +131,11 @@ class Interface(object):
 			unsup_x, unsup_y = self.__data_persist.retrieve_dumped_data(
 									self.__unsupervised_train_file["name"])
 			self.__anomaly_classifier.fit_unsupervised_models(unsup_x)
-			preds = self.__anomaly_classifier.classify_unsupervised(unsup_x)
-			self.__anomaly_classifier.call_output(unsup_y, preds)
+
+			# preds = self.__anomaly_classifier.classify_unsupervised(
+			# 						self.__unsupervised_train_file["name"],
+			# 						 unsup_x, unsup_y)
+			# self.__anomaly_classifier.call_output(unsup_y, preds)
 
 
 		# Only need to do this, if an supervised method is passed
@@ -141,8 +144,11 @@ class Interface(object):
 			sup_x, sup_y = self.__data_persist.retrieve_dumped_data(
 								self.__supervised_train_file["name"])
 			self.__anomaly_classifier.fit_supervised_models(sup_x, sup_y)
-			preds = self.__anomaly_classifier.classify_supervised(sup_x)
-			self.__anomaly_classifier.call_output(sup_y, preds)
+
+			# preds = self.__anomaly_classifier.classify_supervised(
+			# 						self.__supervised_train_file["name"],
+			# 						sup_x, sup_y)
+			# self.__anomaly_classifier.call_output(sup_y, preds)
 
 
 	def get_testing_predictions(self):
@@ -153,8 +159,9 @@ class Interface(object):
 		s_preds = []
 
 		for item in self.__testing:
-			print item["name"]
+			# print item["name"]
 			self.__preprocess_data_helper(item)
+			# print 'item ---- ', item
 			usup_preds, sup_preds = self.__testing_predictions_helper(item)
 
 			u_preds.append(usup_preds)
@@ -170,14 +177,16 @@ class Interface(object):
 		x, y = self.__data_persist.retrieve_dumped_data(item["name"])
 
 		if self.__unsupervised_train_file["name"]:
-			unsuper_preds = self.__anomaly_classifier.classify_unsupervised(x)
-			print 'Unsupervised', item["name"]
-			self.__anomaly_classifier.call_output(y, unsuper_preds)
+			unsuper_preds = self.__anomaly_classifier.classify_unsupervised(
+						item["name"], x, y)
+			# print 'Unsupervised', item["name"]
+			# self.__anomaly_classifier.call_output(y, unsuper_preds)
 
 		if self.__supervised_train_file["name"]:
-			super_preds = self.__anomaly_classifier.classify_supervised(x)
-			print 'Supervised', item["name"]
-			self.__anomaly_classifier.call_output(y, super_preds)
+			super_preds = self.__anomaly_classifier.classify_supervised(
+						item["name"], x, y)
+			# print 'Supervised', item["name"]
+			# self.__anomaly_classifier.call_output(y, super_preds)
 
 		print ''
 

@@ -26,7 +26,7 @@ class AnomalyDetector(object):
 			# sup_models = [('RBF SVM', svm.SVC(kernel='rbf', gamma=1000, C=100000))]):
 		self.__unsup_clfs = unsup_models
 		self.__sup_clfs = sup_models
-		self.outputMat__ = OutputMatrix()
+		self.__outputMat = OutputMatrix()
 		rospy.set_param('unsupervised_model', str(['None']))
 		rospy.set_param('supervised_model', str(['None']))
 
@@ -91,37 +91,45 @@ class AnomalyDetector(object):
 		rospy.set_param('supervised_model', str(super_clfs))
 
 
-	def classify_supervised(self, data):
+	def classify_supervised(self, dataset_name, in_data, out_label):
 		'''
 			Get predictions for unsupervised models.
 			Calls 'private' method with model for predictions.
 				Returned predictions are compiled together
 		'''
+
 		all_preds = []
 		for i in xrange(0, len(self.__sup_clfs)):
 			model = self.__sup_clfs[i]
-			preds = self.__classify(model, data)
+			preds = self.__classify(model, in_data)
 			all_preds.append(preds)
 
 		all_preds = np.array(all_preds)
-		print 'Supervised preds: ', all_preds.shape
+
+		print 'Supervised results for', dataset_name
+		print 'Order of results: ', [item[0] for item in self.__sup_clfs]
+		self.call_output(out_label, all_preds)
 		return all_preds
 
 
-	def classify_unsupervised(self, data):
+	def classify_unsupervised(self, dataset_name, in_data, out_label):
 		'''
 			Get predictions for unsupervised models.
 			Calls 'private' method with model for predictions.
 				Returned predictions are compiled together
 		'''
+
 		all_preds = []
 		for i in xrange(0, len(self.__unsup_clfs)):
 			model = self.__unsup_clfs[i]
-			preds = self.__classify(model, data)
+			preds = self.__classify(model, in_data)
 			all_preds.append(preds)
 
 		all_preds = np.array(all_preds)
-		print 'Unupervised preds: ', all_preds.shape
+
+		print 'Unsupervised results for', dataset_name
+		print 'Order of results: ', [item[0] for item in self.__unsup_clfs]
+		self.call_output(out_label, all_preds)
 		return all_preds
 
 
@@ -136,7 +144,7 @@ class AnomalyDetector(object):
 
 
 		errs = predictions[predictions == 1].size
-		print model[0] + ' Errors: ', 100*float(errs)/data.shape[0]
+		# print model[0] + ' Errors: ', 100*float(errs)/data.shape[0]
 		return predictions
 
 
@@ -147,4 +155,4 @@ class AnomalyDetector(object):
 				passed, so need to iterate through them.
 		'''
 		for item in pred_y:
-			self.outputMat__.output_matrix(true_y, item)
+			self.__outputMat.output_matrix(true_y, item)

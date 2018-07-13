@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
 	input_file = "learning_script.yaml"
 	interface = Interface(input_file)
-	interface.print_all()
+	# interface.print_all()
 
 	with open(input_file, 'r') as fil:
 		local = yaml.load(fil)
@@ -69,11 +69,16 @@ if __name__ == "__main__":
 		supervised_train_file = local["Files"]["supervised_train"]
 		testing_file = local["Files"]["testing"]
 
+	clf_ocsvm17 = svm.OneClassSVM(nu=0.05, kernel="rbf", gamma=1000)
+	unsupervised_models.append(('ocsvm17', clf_ocsvm17))
 	clf_ocsvm18 = svm.OneClassSVM(nu=0.06, kernel="rbf", gamma=1100)
 	unsupervised_models.append(('ocsvm18', clf_ocsvm18))
 
-	clf_rbfsvmbest_3 = svm.SVC(kernel='rbf', gamma=100, C=100000)
-	supervised_models.append(('rbfsvmbest_3', clf_rbfsvmbest_3))
+
+	clf_rbfsvm1 = svm.SVC(kernel='rbf', gamma=150, C=100000)
+	supervised_models.append(('clf_rbfsvm1', clf_rbfsvm1))
+	# clf_rbfsvmbest_3 = svm.SVC(kernel='rbf', gamma=100, C=100000)
+	# supervised_models.append(('rbfsvmbest_3', clf_rbfsvmbest_3))
 
 	interface.genmodel_train(unsupervised_models, supervised_models)
 
