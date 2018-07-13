@@ -44,20 +44,6 @@ class Interface(object):
 		self.__preprocess_data_training()
 
 
-	def print_all(self):
-		'''
-			This was written primarily as a sanity check.
-			That's the only purpose it serves.
-		'''
-
-		print 'fit\t', self.__fit_file, type(self.__fit_file)
-		print 'unsuper\t', self.__unsupervised_train_file, type(self.__unsupervised_train_file)
-		print 'super\t', self.__supervised_train_file, type(self.__supervised_train_file)
-		print 'test\t', self.__testing, type(self.__testing)
-		pprint(self.__testing)
-		print '\n'
-
-
 	def __ready_preprocessor(self):
 		'''
 			NOTE: Specifically for fitting models
@@ -109,12 +95,52 @@ class Interface(object):
 		self.__data_persist.dump_data(item["name"], reduced_x, split_y)
 
 
+	def __testing_predictions_helper(self, item):
+		'''
+			The input 'item' refers to an item in the list of testing datasets.
+
+			The inputs and outputs from the datasets are first gathered.
+			Based on the training files passed in for those models, predictions
+				are returned.
+		'''
+
+		unsuper_preds, super_preds = [], []
+
+		x, y = self.__data_persist.retrieve_dumped_data(item["name"])
+
+		if self.__unsupervised_train_file["name"]:
+			unsuper_preds = self.__anomaly_classifier.classify_unsupervised(
+						item["name"], x, y)
+
+		if self.__supervised_train_file["name"]:
+			super_preds = self.__anomaly_classifier.classify_supervised(
+						item["name"], x, y)
+
+		# print ''
+
+		return unsuper_preds, super_preds
+
+
+	def print_all(self):
+		'''
+			This was written primarily as a sanity check.
+			Prints out datasets names for fitting, and training models.
+		'''
+
+		print 'fit\t', self.__fit_file, type(self.__fit_file)
+		print 'unsuper\t', self.__unsupervised_train_file, type(self.__unsupervised_train_file)
+		print 'super\t', self.__supervised_train_file, type(self.__supervised_train_file)
+		print 'test\t', self.__testing, type(self.__testing)
+		pprint(self.__testing)
+		print '\n'
+
+
 	def genmodel_train(self, unsup_models, sup_models):
 		'''
 			Creates an instance of anomaly classifier.
 			Training data files already exist, so all models can and are
 				trained.
-			Models ready for predictions after this stage.
+			Models are ready for predictions after this stage.
 
 			NOTE: Training predictions are grabbed and outputs are trying
 				to get printed.
@@ -128,6 +154,7 @@ class Interface(object):
 		if self.__unsupervised_train_file["name"]:
 			# NOTE: The following can be scratched once the process is set
 			print '=====Unsupervised====='
+
 			unsup_x, unsup_y = self.__data_persist.retrieve_dumped_data(
 									self.__unsupervised_train_file["name"])
 			self.__anomaly_classifier.fit_unsupervised_models(unsup_x)
@@ -141,6 +168,7 @@ class Interface(object):
 		# Only need to do this, if an supervised method is passed
 		if self.__supervised_train_file["name"]:
 			print '=====Supervised====='
+
 			sup_x, sup_y = self.__data_persist.retrieve_dumped_data(
 								self.__supervised_train_file["name"])
 			self.__anomaly_classifier.fit_supervised_models(sup_x, sup_y)
@@ -161,36 +189,12 @@ class Interface(object):
 		for item in self.__testing:
 			# print item["name"]
 			self.__preprocess_data_helper(item)
-			# print 'item ---- ', item
 			usup_preds, sup_preds = self.__testing_predictions_helper(item)
 
 			u_preds.append(usup_preds)
 			s_preds.append(sup_preds)
 
 		return u_preds, s_preds
-
-
-	def __testing_predictions_helper(self, item):
-
-		unsuper_preds, super_preds = [], []
-
-		x, y = self.__data_persist.retrieve_dumped_data(item["name"])
-
-		if self.__unsupervised_train_file["name"]:
-			unsuper_preds = self.__anomaly_classifier.classify_unsupervised(
-						item["name"], x, y)
-			# print 'Unsupervised', item["name"]
-			# self.__anomaly_classifier.call_output(y, unsuper_preds)
-
-		if self.__supervised_train_file["name"]:
-			super_preds = self.__anomaly_classifier.classify_supervised(
-						item["name"], x, y)
-			# print 'Supervised', item["name"]
-			# self.__anomaly_classifier.call_output(y, super_preds)
-
-		print ''
-
-		return unsuper_preds, super_preds
 
 
 	def retrieve_data(self, loc):

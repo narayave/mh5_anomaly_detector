@@ -30,11 +30,7 @@ def call_collector(topic, output, label):
 				+ output + ' ' + str(label)
 
 	listen = subprocess.Popen(comm, shell=True)
-
 	listen.wait()
-
-	# listen = subprocess.Popen("rosrun anomaly_detector data_collect.py \
-	# 		'/joint_states' collecting.csv 0", shell=True)
 
 
 def call_train(py_script):
@@ -42,8 +38,8 @@ def call_train(py_script):
 
 	comm = "python " + py_script
 	train = subprocess.Popen(comm, shell=True)
-	# train = subprocess.Popen("python run.py", shell=True)
 	train.wait()
+
 
 def call_operate(topic, modelname, threshold):
 	print 'Operation mode activated'
@@ -53,8 +49,6 @@ def call_operate(topic, modelname, threshold):
 
 	monitor = subprocess.Popen(comm, shell=True)
 	monitor.wait()
-	# monitor = subprocess.Popen("rosrun anomaly_detector monitor.py \
-	# 		/joint_states rbfsvm.pkl", shell=True)
 
 
 if __name__ == "__main__":

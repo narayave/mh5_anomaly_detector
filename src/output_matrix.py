@@ -23,7 +23,6 @@ class OutputMatrix(object):
 		self.__fp = None
 		self.__tn = None
 		self.__fn = None
-
 		self.__acc = None
 		self.__rec = None
 		self.__prec = None
@@ -32,8 +31,10 @@ class OutputMatrix(object):
 
 	def set_confusion_matrix(self, tp, fp, tn, fn):
 		'''
-			First to be called. All stats based on these values.
+			First to be called.
+			Sets the confusion matrix values.
 		'''
+
 		self.__tp = tp
 		self.__fp = fp
 		self.__tn = tn
@@ -61,6 +62,7 @@ class OutputMatrix(object):
 		'''
 			Measures are printed and returned.
 		'''
+
 		acc = self.get_accuracy()
 		rec = self.get_recall()
 		prec = self.get_precision()
@@ -91,23 +93,45 @@ class OutputMatrix(object):
 
 
 	def set_accuracy(self):
+		'''
+			acc = (tp + fp) / (tp + fp + tn + fn)
+		'''
+
 		res = float(self.__tp + self.__tn) / \
 				(self.__tp + self.__fp + self.__tn + self.__fn + 1e-6)
 		self.__acc = res
 
 
 	def set_recall(self):
+		'''
+			rec = tp / (tp + fn)
+
+
+		'''
+
 		res = float(self.__tp + 1e-6) / (self.__tp + self.__fn + 1e-6)
 		self.__rec = res
 
 
 	def set_precision(self):
-		res = float(self.__tp + 1e-6) / (self.__tp + self.__fp + 1e-6)
+		'''
+			prec = tp / (tp + fp)
 
+
+		'''
+
+		res = float(self.__tp + 1e-6) / (self.__tp + self.__fp + 1e-6)
 		self.__prec = res
 
 
 	def set_f1measure(self):
+		'''
+			f1 = (2 * rec * prec) / (rec + prec)
+
+			Balanced F1 score that is the harmonic mean of both recall
+				and precision.
+		'''
+
 		res = float(2*self.__rec*self.__prec) / (self.__rec+self.__prec)
 		self.__f1 = res
 
@@ -150,7 +174,8 @@ class OutputMatrix(object):
 		self.set_confusion_matrix(tpos, fpos, tneg, fneg)
 		self.set_measures()
 
-		print 'Confusion Matrix - '
+		print 'Benign/Attack:\t', "{:.4f}".format(benign), '\t', "{:.4f}".format(attack)
+		print '\nConfusion Matrix - '
 		print '\ttpos: \t', "{:.4f}".format(tpos)
 		print '\tfpos: \t', "{:.4f}".format(fpos)
 		print '\ttneg: \t', "{:.4f}".format(tneg)
@@ -161,7 +186,6 @@ class OutputMatrix(object):
 		print '\tprecision: \t', "{:.4f}".format(self.get_precision())
 		print '\tf1measure: \t', "{:.4f}".format(self.get_f1measure())
 
-		# print 'Benign/Attack:\t', "{:.4f}".format(benign), '\t', "{:.4f}".format(attack)
 		# if attack > 0.22:
 		# 	print '\tDETECT'
 		# else:

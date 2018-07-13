@@ -31,20 +31,6 @@ class AnomalyDetector(object):
 		rospy.set_param('supervised_model', str(['None']))
 
 
-	def fit_supervised_models(self, sup_train_x, sup_train_y):
-		'''
-			Unsupervised data is mixed. Labels (y) are passed in.
-		'''
-		self.__fit_supervised(sup_train_x, sup_train_y)
-
-
-	def fit_unsupervised_models(self, data_x):
-		'''
-			Supervised data is meant to all be safe. No labels.
-		'''
-		self.__fit_unsupervised(data_x)
-
-
 	def __fit_unsupervised(self, data):
 		'''
 			'Private' fit unsupervised models method
@@ -91,11 +77,41 @@ class AnomalyDetector(object):
 		rospy.set_param('supervised_model', str(super_clfs))
 
 
+	def __classify(self, model, data):
+		'''
+			Given a model, prediction is made.
+
+			BUG: Assuming model is used as a binary classifier,
+					predictions are turned to 0/1 vs 1/-1
+		'''
+		predictions = model[1].predict(data)
+
+		# errs = predictions[predictions == 1].size
+		# print model[0] + ' Errors: ', 100*float(errs)/data.shape[0]
+		return predictions
+
+
+	def fit_supervised_models(self, sup_train_x, sup_train_y):
+		'''
+			Unsupervised data is mixed. Labels (y) are passed in.
+		'''
+		self.__fit_supervised(sup_train_x, sup_train_y)
+
+
+	def fit_unsupervised_models(self, data_x):
+		'''
+			Supervised data is meant to all be safe. No labels.
+		'''
+		self.__fit_unsupervised(data_x)
+
+
 	def classify_supervised(self, dataset_name, in_data, out_label):
 		'''
 			Get predictions for unsupervised models.
 			Calls 'private' method with model for predictions.
-				Returned predictions are compiled together
+				For the dataset that is passed in, all supervised model
+				results are compiled.
+				With the output labels, the output matrix is called.
 		'''
 
 		all_preds = []
@@ -116,7 +132,9 @@ class AnomalyDetector(object):
 		'''
 			Get predictions for unsupervised models.
 			Calls 'private' method with model for predictions.
-				Returned predictions are compiled together
+				For the dataset that is passed in, all unsupervised model
+				results are compiled.
+				With the output labels, the output matrix is called.
 		'''
 
 		all_preds = []
@@ -131,22 +149,6 @@ class AnomalyDetector(object):
 		print 'Order of results: ', [item[0] for item in self.__unsup_clfs]
 		self.call_output(out_label, all_preds)
 		return all_preds
-
-
-	def __classify(self, model, data):
-		'''
-			Given a model, prediction is made.
-
-			BUG: Assuming model is used as a binary classifier,
-					predictions are turned to 0/1 vs 1/-1
-		'''
-		predictions = model[1].predict(data)
-
-
-		errs = predictions[predictions == 1].size
-		# print model[0] + ' Errors: ', 100*float(errs)/data.shape[0]
-		return predictions
-
 
 
 	def call_output(self, true_y, pred_y):

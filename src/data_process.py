@@ -96,4 +96,5 @@ class DataProcess(object):
 
 	def get_reduction_size(self):
 		''' Return number of components passed to PCA'''
+
 		return self.__reduction_size
