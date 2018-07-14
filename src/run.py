@@ -95,8 +95,8 @@ if __name__ == "__main__":
 	print 'x shape: ', x.shape
 	print 'y shape: ', np.array(y).shape
 
-	print rospy.get_param('unsupervised_model')
-	print rospy.get_param('supervised_model')
+	# print rospy.get_param('unsupervised_model')
+	# print rospy.get_param('supervised_model')
 
 	# graph_3d(x, s_preds[0])
 

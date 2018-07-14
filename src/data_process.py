@@ -65,6 +65,7 @@ class DataProcess(object):
 
 
 	def scaler_transform(self, data):
+		''' Data supplied is scaled and returned. '''
 		transformed_data = self.__scale.transform(data)
 		return transformed_data
 

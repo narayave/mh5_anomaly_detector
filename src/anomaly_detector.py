@@ -15,7 +15,7 @@ from sklearn import svm
 import numpy as np
 from output_matrix import OutputMatrix
 from sklearn.externals import joblib
-import rospy
+# import rospy
 from pprint import pprint
 
 
@@ -27,8 +27,8 @@ class AnomalyDetector(object):
 		self.__unsup_clfs = unsup_models
 		self.__sup_clfs = sup_models
 		self.__outputMat = OutputMatrix()
-		rospy.set_param('unsupervised_model', str(['None']))
-		rospy.set_param('supervised_model', str(['None']))
+		# rospy.set_param('unsupervised_model', str(['None']))
+		# rospy.set_param('supervised_model', str(['None']))
 
 
 	def __fit_unsupervised(self, data):
