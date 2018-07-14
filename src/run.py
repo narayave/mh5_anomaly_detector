@@ -19,7 +19,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from sklearn import svm
 import yaml
-import rospy
+# import rospy
 from sklearn.decomposition import PCA
 
 

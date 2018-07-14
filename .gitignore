@@ -1,0 +1,16 @@
+### GIT IGNORE ###
+
+# ROS specific
+# .catkin_tools/*
+
+
+# Compiled python script
+*.pyc
+
+# Exported models
+*.pkl
+
+
+# Data Storage
+*.zip
+*.npz

@@ -4,7 +4,6 @@
   <version>0.1.0</version>
   <description>ROS Anomaly Detector</description>
 
-
   <maintainer email="narayave@oregonstate.edu">Vedanth Narayanan</maintainer>
 
   <license>BSD</license>
@@ -13,8 +12,4 @@
   <author email="narayave@oregonstate.edu">Vedanth Narayanan</author>
   <buildtool_depend>catkin</buildtool_depend>
 
-  <export>
-    <!-- Other tools can request additional information be placed here -->
-
-  </export>
 </package>
