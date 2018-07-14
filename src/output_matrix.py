@@ -175,7 +175,7 @@ class OutputMatrix(object):
 		self.set_measures()
 
 		print 'Benign/Attack:\t', "{:.4f}".format(benign), '\t', "{:.4f}".format(attack)
-		print '\nConfusion Matrix - '
+		print 'Output Results - '
 		print '\ttpos: \t', "{:.4f}".format(tpos)
 		print '\tfpos: \t', "{:.4f}".format(fpos)
 		print '\ttneg: \t', "{:.4f}".format(tneg)

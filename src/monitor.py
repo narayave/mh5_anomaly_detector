@@ -109,7 +109,7 @@ def check():
 		PREDS.append(prediction[0])
 		# print 'got prediction', prediction[0]
 
-		if prediction == -1:
+		if prediction == 1:
 			GOOD += 1
 			print 'Good: ', GOOD/float(GOOD+BAD), 'Bad: ', BAD/float(GOOD+BAD), 'Count: ', GOOD+BAD
 		else:

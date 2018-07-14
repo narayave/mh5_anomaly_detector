@@ -51,7 +51,7 @@ class AnomalyDetector(object):
 			# Adding fitted model back to class member
 			self.__unsup_clfs[i] = current_model
 			unsuper_clfs.append(saveloc)
-		rospy.set_param('unsupervised_model', str(unsuper_clfs))
+		# rospy.set_param('unsupervised_model', str(unsuper_clfs))
 
 
 	def __fit_supervised(self, data_x, data_y):
@@ -74,7 +74,7 @@ class AnomalyDetector(object):
 			# Adding fitted model back to class member
 			self.__sup_clfs[i] = current_model
 			super_clfs.append(saveloc)
-		rospy.set_param('supervised_model', str(super_clfs))
+		# rospy.set_param('supervised_model', str(super_clfs))
 
 
 	def __classify(self, model, data):
