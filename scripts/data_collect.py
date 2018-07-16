@@ -25,6 +25,9 @@ def control_command(val):
 	global PREV
 	global TASK_COUNT
 
+	if list(val.position) == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
+		return
+
 	if LABEL:
 		if PREV != list(val.position):
 			POSITIONS_LIST.append(list(val.position) + [LABEL])
@@ -52,15 +55,15 @@ if __name__ == '__main__':
 	print 'collect - ', sys.argv
 
 
-	rospy.init_node('collecter', anonymous=True)
+	rospy.init_node('data_collector', anonymous=True)
 	rospy.Subscriber(sys.argv[1],
 				JointState,
 				control_command)
 
 
 	# NOTE: Argv 1 - file name is expected
-	location = sys.argv[2]
-	cwd = os.getcwd()+'/data/'+location
+	cwd = sys.argv[2]
+	# cwd = os.getcwd()+'/../data/'+location
 
 	# NOTE: The label is an option
 	if len(sys.argv) > 3:
@@ -68,6 +71,8 @@ if __name__ == '__main__':
 
 	sleep(3)
 	with open(cwd, "w+") as out_file:
+
+		# print out_file
 		out = csv.writer(out_file, delimiter=',')
 		print 'Writing to', cwd
 		while not rospy.is_shutdown():

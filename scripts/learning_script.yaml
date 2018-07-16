@@ -4,20 +4,22 @@ Files:
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   unsupervised_train:
-    name: 'data/original_30.csv'
+    name: Null #'data/original_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   supervised_train:
-    name: Null #'data/rbfsvm_train_30.csv'
+    name: 'data/rbfsvm_train_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   testing:
-    - name: 'data/original_30.csv'
+    # - name: 'data/original_30.csv'
+    #   input_col: [0, 1, 2, 3, 4, 5]
+    #   output_col: [6]
+    # - name: 'data/rbfsvm_train_30.csv'
+    #   input_col: [0, 1, 2, 3, 4, 5]
+    #   output_col: [6]
+    - name: 'data/test_final.csv'
       input_col: [0, 1, 2, 3, 4, 5]
       output_col: [6]
-    - name: 'data/rbfsvm_train_30.csv'
-      input_col: [0, 1, 2, 3, 4, 5]
-      output_col: [6]
-
 Operations:
   reduction: 0

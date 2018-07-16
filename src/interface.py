@@ -19,7 +19,7 @@ NOTE:
 from pprint import pprint
 import yaml
 from sklearn import svm
-
+import os
 from data_process import DataProcess
 from anomaly_detector import AnomalyDetector
 from data_persist import DataPersist
@@ -27,6 +27,9 @@ from data_persist import DataPersist
 class Interface(object):
 
 	def __init__(self, input_file):
+
+		print '\n\n', os.getcwd()
+
 
 		with open(input_file, 'r') as fil:
 			local = yaml.load(fil)

@@ -32,7 +32,7 @@ class DataPersist(object):
 		'''
 
 		name = name.split('.')[0].split('/')[1]
-		loc = "./mod_data/"+name+".npz"
+		loc = "../mod_data/"+name+".npz"
 
 		return loc
 

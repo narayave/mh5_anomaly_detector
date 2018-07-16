@@ -42,10 +42,10 @@ def load_modules(load_file, th):
 	THRESHOLD = th
 
 
-	SCALER = joblib.load("./data/scale.pkl")
-	REDUCE = joblib.load("./data/reduce.pkl")
+	SCALER = joblib.load("../data/scale.pkl")
+	REDUCE = joblib.load("../data/reduce.pkl")
 
-	load_file = './data/'+load_file
+	load_file = '../data/'+load_file
 	MODEL = joblib.load(load_file)
 
 	# print 'Unsupervised models - ', rospy.get_param('unsupervised_model')

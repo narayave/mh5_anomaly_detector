@@ -1,25 +1,28 @@
 <launch>
 	<!-- Testing purposes-->
-	<!-- <include file="$(find move_mh5)/launch/exp.launch" /> -->
+	<include file="$(find move_mh5)/launch/exp.launch" />
 
 	<!-- COLLECT MODE -->
 	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
-		<arg name="comm_arg" value="-collect" />
-		<arg name="other_args" value="'/joint_states' 'collecting2.csv' 0" />
+		<arg name="mode_arg" value="-collect" />
+		<arg name="other_args" value="'/joint_states'
+			'$(find ros_anomaly_detector)/data/test_final.csv' 1" />
 	</include> -->
 
 
 	<!-- TRAIN MODE -->
-	<include file="$(find ros_anomaly_detector)/launch/module.launch">
-		<arg name="comm_arg" value="-train" />
-		<arg name="other_args" value="'run.py'" />
-	</include>
+	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
+		<arg name="mode_arg" value="-train" />
+		<arg name="other_args" value="run.py" />
+		<!-- '$(find ros_anomaly_detector)/scripts/learning_script.yaml'" /> -->
+		<arg name="file_name" value="'$(find ros_anomaly_detector)/scripts/learning_script.yaml'">
+	</include> -->
 
 
 	<!-- OPERATE MODE -->
-	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
-		<arg name="comm_arg" value="-operate" />
+	<include file="$(find ros_anomaly_detector)/launch/module.launch">
+		<arg name="mode_arg" value="-operate" />
 		<arg name="other_args" value="'/joint_states' rbfsvmbest_3.pkl 0.02" />
-	</include> -->
+	</include>
 
 </launch>

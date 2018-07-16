@@ -1,9 +1,22 @@
 <launch>
 
-	<arg name="comm_arg" />
+	<arg name="mode_arg" />
 	<arg name="other_args" />
+	<arg name="file_name" />
 
-	<node name="main" pkg="ros_anomaly_detector" type="main.py"
-		output="screen" args="$(arg comm_arg) $(arg other_args)" cwd='node'/>
+	<!-- <node name="main" pkg="ros_anomaly_detector" type="main.py"
+		output="screen" args="$(arg comm_arg) $(arg other_args)" cwd='node'/> -->
+
+	<group if="$(eval arg('mode_arg') == '-collect')">
+		<node name="data_collector" pkg="ros_anomaly_detector" type="data_collect.py" output="screen" cwd='node' args="$(arg other_args)" />
+	</group>
+
+	<group if="$(eval arg('mode_arg') == '-train')">
+		<node name="train" pkg="ros_anomaly_detector" type='$(arg other_args)' args="$(arg file_name)" output="screen" />
+	</group>
+
+	<group if="$(eval arg('mode_arg') == '-operate')">
+		<node name="monitor" pkg="ros_anomaly_detector" type="monitor.py" output="screen" cwd='node' args="$(arg other_args)" />
+	</group>
 
 </launch>
