@@ -15,10 +15,10 @@ catkin_package(
 )
 
 include_directories(
-# include
+#	include data include mod_data)
 # ${catkin_INCLUDE_DIRS}
+#	data, mod_data)
 )
-
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

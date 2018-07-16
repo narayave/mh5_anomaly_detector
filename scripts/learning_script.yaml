@@ -1,6 +1,6 @@
 Files:
   fit_file:
-    name: 'data/original_30.csv'
+    name: '~/catkin_assignments/src/ros_anomaly_detector/data/original_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   unsupervised_train:
@@ -8,18 +8,18 @@ Files:
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   supervised_train:
-    name: 'data/rbfsvm_train_30.csv'
+    name: '~/catkin_assignments/src/ros_anomaly_detector/data/rbfsvm_train_30.csv'
     input_col: [0, 1, 2, 3, 4, 5]
     output_col: [6]
   testing:
-    # - name: 'data/original_30.csv'
+    # - name: '~/catkin_assignments/src/ros_anomaly_detector/data/original_30.csv'
     #   input_col: [0, 1, 2, 3, 4, 5]
     #   output_col: [6]
-    # - name: 'data/rbfsvm_train_30.csv'
-    #   input_col: [0, 1, 2, 3, 4, 5]
-    #   output_col: [6]
-    - name: 'data/test_final.csv'
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/data/rbfsvm_train_30.csv'
       input_col: [0, 1, 2, 3, 4, 5]
       output_col: [6]
+    # - name: '~/catkin_assignments/src/ros_anomaly_detector/data/test_final.csv'
+    #   input_col: [0, 1, 2, 3, 4, 5]
+    #   output_col: [6]
 Operations:
-  reduction: 0
+  reduction: 3

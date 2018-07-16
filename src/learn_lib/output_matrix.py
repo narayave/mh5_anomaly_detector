@@ -161,7 +161,6 @@ class OutputMatrix(object):
 			elif (pred_y[i] == 1) & (true_y[i, 0] == -1):
 				fneg += 1
 
-
 		benign = float(fneg + tneg) / count_train
 		attack = float(tpos + fpos) / count_train
 
@@ -169,7 +168,6 @@ class OutputMatrix(object):
 		fpos = float(fpos) / count_train
 		tneg = float(tneg) / count_train
 		fneg = float(fneg) / count_train
-
 
 		self.set_confusion_matrix(tpos, fpos, tneg, fneg)
 		self.set_measures()

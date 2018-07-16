@@ -31,7 +31,8 @@ class DataPersist(object):
 			Used both of dumping and retrieving.
 		'''
 
-		name = name.split('.')[0].split('/')[1]
+		path_parts = name.split('.')[0].split('/')
+		name = path_parts[len(path_parts)-1]
 		loc = "../mod_data/"+name+".npz"
 
 		return loc

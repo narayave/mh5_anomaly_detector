@@ -14,7 +14,8 @@ Date:
 
 
 import sys
-from interface import Interface
+from learn_lib.interface import Interface
+# from interface import Interface
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -105,6 +106,6 @@ if __name__ == "__main__":
 	# print rospy.get_param('unsupervised_model')
 	# print rospy.get_param('supervised_model')
 
-	# graph_3d(x, s_preds[0])
+	graph_3d(x, s_preds[0])
 
-	reduce_graph_3d(x, u_preds[0])
+	# reduce_graph_3d(x, u_preds[0])

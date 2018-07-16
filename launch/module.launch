@@ -12,7 +12,7 @@
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-train')">
-		<node name="train" pkg="ros_anomaly_detector" type='$(arg other_args)' args="$(arg file_name)" output="screen" />
+		<node name="train" pkg="ros_anomaly_detector" type='$(arg other_args)' args="$(arg file_name)" cwd='node' output="screen" />
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-operate')">

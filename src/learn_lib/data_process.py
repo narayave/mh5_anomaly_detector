@@ -53,7 +53,9 @@ class DataProcess(object):
 	def scaler_fit(self, data):
 		''' Fit scaling object '''
 		# NOTE: If model exists, load. or fit and save
-		saveloc = './data/scale.pkl'
+
+		print os.getcwd()
+		saveloc = '../data/scale.pkl'
 		if os.path.exists(saveloc):
 			self.__scale = joblib.load(saveloc)
 			data = self.__scale.transform(data)
@@ -75,7 +77,7 @@ class DataProcess(object):
 		# NOTE: If model exists, load. or fit and save
 
 		if self.__reduction:
-			saveloc = './data/reduce.pkl'
+			saveloc = '../data/reduce.pkl'
 			if os.path.exists(saveloc):
 				self.__reduction = joblib.load(saveloc)
 				data = self.__reduction.transform(data)

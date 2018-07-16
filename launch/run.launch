@@ -1,6 +1,6 @@
 <launch>
 	<!-- Testing purposes-->
-	<include file="$(find move_mh5)/launch/exp.launch" />
+	<!-- <include file="$(find move_mh5)/launch/exp.launch" /> -->
 
 	<!-- COLLECT MODE -->
 	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
@@ -11,18 +11,18 @@
 
 
 	<!-- TRAIN MODE -->
-	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
+	<include file="$(find ros_anomaly_detector)/launch/module.launch">
 		<arg name="mode_arg" value="-train" />
 		<arg name="other_args" value="run.py" />
 		<!-- '$(find ros_anomaly_detector)/scripts/learning_script.yaml'" /> -->
-		<arg name="file_name" value="'$(find ros_anomaly_detector)/scripts/learning_script.yaml'">
-	</include> -->
+		<arg name="file_name" value="'$(find ros_anomaly_detector)/scripts/learning_script.yaml'" />
+	</include>
 
 
 	<!-- OPERATE MODE -->
-	<include file="$(find ros_anomaly_detector)/launch/module.launch">
+	<!-- <include file="$(find ros_anomaly_detector)/launch/module.launch">
 		<arg name="mode_arg" value="-operate" />
 		<arg name="other_args" value="'/joint_states' rbfsvmbest_3.pkl 0.02" />
-	</include>
+	</include> -->
 
 </launch>

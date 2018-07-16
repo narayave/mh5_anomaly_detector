@@ -41,7 +41,7 @@ class AnomalyDetector(object):
 			current_model = self.__unsup_clfs[i]
 
 			# NOTE: If model exists, load. or fit and save
-			saveloc = './data/'+current_model[0]+'.pkl'
+			saveloc = '../data/'+current_model[0]+'.pkl'
 			if os.path.exists(saveloc):
 				current_model = (current_model[0], joblib.load(saveloc))
 			else:
@@ -64,7 +64,7 @@ class AnomalyDetector(object):
 			current_model = self.__sup_clfs[i]
 
 			# NOTE: If model exists, load. or fit and save
-			saveloc = './data/'+current_model[0]+'.pkl'
+			saveloc = '../data/'+current_model[0]+'.pkl'
 			if os.path.exists(saveloc):
 				current_model = (current_model[0], joblib.load(saveloc))
 			else:
