@@ -4,9 +4,6 @@
 	<arg name="other_args" />
 	<arg name="file_name" />
 
-	<!-- <node name="main" pkg="ros_anomaly_detector" type="main.py"
-		output="screen" args="$(arg comm_arg) $(arg other_args)" cwd='node'/> -->
-
 	<group if="$(eval arg('mode_arg') == '-collect')">
 		<node name="data_collector" pkg="ros_anomaly_detector" type="data_collect.py" output="screen" cwd='node' args="$(arg other_args)" />
 	</group>

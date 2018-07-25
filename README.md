@@ -30,9 +30,6 @@ collecting data (Collect mode), learning models (Learn mode), and detecting
 anomalies (Operate mode). -->
 
 
-<!-- % IDM is a \textbf{framework}! This is important because it gives users
-% and other projects a starting point. -->
-
 
 <!-- % % Also important, the IDM is designed to integrate well
 % % with the development of any ROS application.
@@ -104,6 +101,12 @@ motoman driver
 ---
 
 ## Build
+
+setup.py should run from home directory
+specify the 'learn_lib' package to build within the src/ directory
+
+then go back and build the whole ROS workspace
+Then scripts should be able to run
 
 
 ```bash
