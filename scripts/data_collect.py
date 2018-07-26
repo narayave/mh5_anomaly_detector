@@ -14,6 +14,15 @@ LABEL = None
 COUNT = 0
 PREV = None
 
+TASK_COUNT = 0
+
+
+def task_count(val):
+	global TASK_COUNT
+
+	print val.data
+
+	TASK_COUNT = int(val.data)
 
 '''
 	Callback function when a joint_states message is published.
@@ -30,11 +39,11 @@ def control_command(val):
 
 	if LABEL:
 		if PREV != list(val.position):
-			POSITIONS_LIST.append(list(val.position) + [LABEL])
+			POSITIONS_LIST.append(list(val.position) + [LABEL] + [TASK_COUNT])
 			PREV = list(val.position)
 	else:
 		if PREV != list(val.position):
-			POSITIONS_LIST.append(list(val.position))
+			POSITIONS_LIST.append(list(val.position) + [TASK_COUNT])
 			PREV = list(val.position)
 
 
@@ -55,15 +64,19 @@ if __name__ == '__main__':
 	print 'collect - ', sys.argv
 
 
-	rospy.init_node('data_collector', anonymous=True)
+	rospy.init_node('collecter', anonymous=True)
 	rospy.Subscriber(sys.argv[1],
 				JointState,
 				control_command)
 
+	rospy.Subscriber('task_counter',
+					String,
+					task_count)
+
 
 	# NOTE: Argv 1 - file name is expected
-	cwd = sys.argv[2]
-	# cwd = os.getcwd()+'/../data/'+location
+	location = sys.argv[2]
+	cwd = os.getcwd()+'/data/'+location
 
 	# NOTE: The label is an option
 	if len(sys.argv) > 3:
@@ -71,8 +84,6 @@ if __name__ == '__main__':
 
 	sleep(3)
 	with open(cwd, "w+") as out_file:
-
-		# print out_file
 		out = csv.writer(out_file, delimiter=',')
 		print 'Writing to', cwd
 		while not rospy.is_shutdown():
