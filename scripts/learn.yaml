@@ -1,0 +1,108 @@
+Files:
+  fit_file:
+    name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30.csv'
+    input_col: [0, 1, 2, 3, 4, 5]
+    output_col: [6]
+  unsupervised_train:
+    name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30.csv'
+    input_col: [0, 1, 2, 3, 4, 5]
+    output_col: [6]
+  supervised_train:
+    name: Null #'~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_30_10_10.csv'
+    input_col: [0, 1, 2, 3, 4, 5]
+    output_col: [6]
+  testing:
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/1.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/2.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/3.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/4.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/5.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/6.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/7.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/8.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/9.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/10.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/11.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/12.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/13.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/14.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/15.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/16.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/17.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/18.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/19.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/20.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/21.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/22.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/23.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/24.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/25.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/26.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/27.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/28.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/29.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+    - name: '~/catkin_assignments/src/ros_anomaly_detector/7_26_data/train/train_benign_30/30.csv'
+      input_col: [0, 1, 2, 3, 4, 5]
+      output_col: [6]
+
+
+Operations:
+  reduction: 0
