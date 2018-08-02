@@ -1,3 +1,7 @@
+
+<!-- THIS IS AN EXAMPLE FILE -->
+<!-- It is meant to show how each mode is invoked. -->
+
 <launch>
 	<!-- Testing purposes-->
 	<!-- <include file="$(find move_mh5)/launch/exp.launch" /> -->

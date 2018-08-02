@@ -37,7 +37,8 @@ class DataProcess(object):
 	def split(self, in_file, x_cols, y_cols):
 		''' Read csv, to dataframe, split to x and y. '''
 
-		dataframe = pd.read_csv(in_file, engine='python')
+
+		dataframe = pd.read_csv(in_file, header=None, engine='python')
 		dataset = dataframe.values
 		data = shuffle(dataset)
 
@@ -54,7 +55,7 @@ class DataProcess(object):
 		''' Fit scaling object '''
 		# NOTE: If model exists, load. or fit and save
 
-		print os.getcwd()
+		# print os.getcwd()
 		saveloc = '../data/scale.pkl'
 		if os.path.exists(saveloc):
 			self.__scale = joblib.load(saveloc)
