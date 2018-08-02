@@ -50,10 +50,7 @@ def collect(out):
 
 if __name__ == '__main__':
 
-	global LABEL
-
 	print 'collect - ', sys.argv
-
 
 	rospy.init_node('data_collector', anonymous=True)
 	rospy.Subscriber(sys.argv[1],
@@ -61,9 +58,8 @@ if __name__ == '__main__':
 				control_command)
 
 
-	# NOTE: Argv 1 - file name is expected
+	# Argv 1 - path + file name is expected
 	cwd = sys.argv[2]
-	# cwd = os.getcwd()+'/../data/'+location
 
 	# NOTE: The label is an option
 	if len(sys.argv) > 3:

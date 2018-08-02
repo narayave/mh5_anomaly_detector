@@ -3,13 +3,14 @@
 	<arg name="mode_arg" />
 	<arg name="other_args" />
 	<arg name="file_name" />
+	<arg name="pkg_name" />
 
 	<group if="$(eval arg('mode_arg') == '-collect')">
 		<node name="data_collector" pkg="ros_anomaly_detector" type="data_collect.py" output="screen" cwd='node' args="$(arg other_args)" />
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-train')">
-		<node name="train" pkg="ros_anomaly_detector" type='$(arg other_args)' args="$(arg file_name)" cwd='node' output="screen" />
+		<node name="train" pkg='$(arg pkg_name)' type='$(arg other_args)' args="$(arg file_name)" cwd='node' output="screen" />
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-operate')">

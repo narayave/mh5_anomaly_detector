@@ -55,7 +55,7 @@ class DataProcess(object):
 		''' Fit scaling object '''
 		# NOTE: If model exists, load. or fit and save
 
-		print os.getcwd()
+		# print os.getcwd()
 		saveloc = '../data/scale.pkl'
 		if os.path.exists(saveloc):
 			self.__scale = joblib.load(saveloc)

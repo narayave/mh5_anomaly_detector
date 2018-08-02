@@ -15,7 +15,7 @@ NOTE:
 '''
 
 import numpy as np
-
+import os
 
 class DataPersist(object):
 
@@ -32,8 +32,13 @@ class DataPersist(object):
 		'''
 
 		path_parts = name.split('.')[0].split('/')
-		name = path_parts[len(path_parts)-1]
-		loc = "../mod_data/"+name+".npz"
+		file_name = path_parts[len(path_parts)-1]
+		path = ['mod_data' if x=='data' else x for x in path_parts[:-1]]
+		path = '/'.join(path)
+		loc = path + '/' + file_name + '.npz'
+
+		if not os.path.exists(os.path.abspath(path)):
+			os.makedirs(os.path.abspath(path))
 
 		return loc
 
