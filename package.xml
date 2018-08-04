@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>ros_anomaly_detector</name>
-  <version>0.1.0</version>
+  <version>0.1.5</version>
   <description>ROS Anomaly Detector</description>
 
   <maintainer email="narayave@oregonstate.edu">Vedanth Narayanan</maintainer>
