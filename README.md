@@ -112,6 +112,12 @@ moveit
 ros industrial core
 motoman driver
 
+### Dependencies independet of ROS
+
+Sci-Kit Learn - [License](https://github.com/scikit-learn/scikit-learn/blob/master/COPYING)
+Numpy - [License](https://docs.scipy.org/doc/numpy-1.10.0/license.html)
+Pandas - [License](https://pandas.pydata.org/pandas-docs/stable/overview.html#license)
+
 ---
 
 ## Build
