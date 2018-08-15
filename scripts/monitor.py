@@ -41,7 +41,7 @@ def load_modules(load_file, th):
 
 	THRESHOLD = th
 
-
+	# FIXME: TODO: Fix relative paths
 	SCALER = joblib.load("../data/scale.pkl")
 	REDUCE = joblib.load("../data/reduce.pkl")
 
