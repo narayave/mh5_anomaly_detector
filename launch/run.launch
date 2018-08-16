@@ -18,8 +18,8 @@
 	<include file="$(find ros_anomaly_detector)/launch/module.launch">
 		<arg name="mode_arg" value="-train" />
 		<arg name="other_args" value="run.py" />
-		<!-- '$(find ros_anomaly_detector)/scripts/learning_script.yaml'" /> -->
-		<arg name="file_name" value="'$(find ros_anomaly_detector)/scripts/learning_script.yaml'" />
+		<arg name="file_name" value="'$(find move_mh5)/scripts/learning_script.yaml'" />
+		<arg name="pkg_name" value="ros_anomaly_detector" />
 	</include>
 
 
