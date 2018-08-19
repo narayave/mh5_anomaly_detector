@@ -104,6 +104,10 @@ if __name__ == "__main__":
 - Anomaly Detector
 - Output Matrix
 
+The following image shows the design of the different components of
+the library, and how they interact with each other.
+![Image](images/library_architecture.png)
+
 <!-- - Listening mode - Collect data, specify topics.
 - Training option - Use collected data and train a model.
 	Needs lots of options and cover various attributes.
@@ -188,7 +192,7 @@ The ADM can be included and initiated by placing each of the codes in the approp
 
 #### Collect Mode
 ```xml
-<include file="$(find ros_anomaly_detector)/launch/module.launch">
+<include file="$(find mh5_anomaly_detector)/launch/module.launch">
   <arg name="mode_arg" value="-collect" />
   <arg name="other_args" value="<tpc_name>'
 	`$(find pkg)/data/<output_file>.csv' <out_label>" />
@@ -197,7 +201,7 @@ The ADM can be included and initiated by placing each of the codes in the approp
 
 #### Learn Mode
 ```xml
-<include file="$(find ros_anomaly_detector)/launch/module.launch">
+<include file="$(find mh5_anomaly_detector)/launch/module.launch">
   <arg name="mode_arg" value="-train" />
   <arg name="other_args" value="<script>.py" />
   <arg name="pkg_name" value="pkg" />
@@ -207,7 +211,7 @@ The ADM can be included and initiated by placing each of the codes in the approp
 
 #### Operate Mode
 ```xml
-<include file="$(find ros_anomaly_detector)/launch/module.launch">
+<include file="$(find mh5_anomaly_detector)/launch/module.launch">
   <arg name="mode_arg" value="-operate" />
   <arg name="other_args" value="'<tpc_name>' <classifier_name> <threshold_value>" />
 </include>
@@ -216,7 +220,7 @@ The ADM can be included and initiated by placing each of the codes in the approp
 The ADM can also be initiated from the command line, following the bash command. It's important that all arguments are properly supplied.
 
 ```bash
-roslaunch ros_anomaly_detector module.launch arg_1:=arg1_value ...
+roslaunch mh5_anomaly_detector module.launch arg_1:=arg1_value ...
 ```
 
 ---

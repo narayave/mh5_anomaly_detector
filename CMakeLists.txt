@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(ros_anomaly_detector)
+project(mh5_anomaly_detector)
 
 
 find_package(catkin REQUIRED)

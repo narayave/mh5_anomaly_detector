@@ -6,7 +6,7 @@
 	<arg name="pkg_name" />
 
 	<group if="$(eval arg('mode_arg') == '-collect')">
-		<node name="data_collector" pkg="ros_anomaly_detector" type="data_collect.py" output="screen" cwd='node' args="$(arg other_args)" />
+		<node name="data_collector" pkg="mh5_anomaly_detector" type="data_collect.py" output="screen" cwd='node' args="$(arg other_args)" />
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-train')">
@@ -14,7 +14,7 @@
 	</group>
 
 	<group if="$(eval arg('mode_arg') == '-operate')">
-		<node name="monitor" pkg="ros_anomaly_detector" type="monitor.py" output="screen" cwd='node' args="$(arg other_args)" />
+		<node name="monitor" pkg="mh5_anomaly_detector" type="monitor.py" output="screen" cwd='node' args="$(arg other_args)" />
 	</group>
 
 </launch>
