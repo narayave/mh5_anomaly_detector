@@ -83,8 +83,17 @@ if __name__ == "__main__":
 	unsupervised_models.append(('ocsvm18', clf_ocsvm18))
 
 
-	clf_rbfsvm1 = svm.SVC(kernel='rbf', gamma=150, C=100000)
-	supervised_models.append(('clf_rbfsvm1', clf_rbfsvm1))
+	# clf_rbfsvm1 = svm.SVC(kernel='rbf', gamma=150, C=100000)
+	# supervised_models.append(('clf_rbfsvm1', clf_rbfsvm1))
+	# clf_rbfsvm21 = svm.SVC(kernel='rbf', gamma=150, C=100000)
+	# supervised_models.append(('clf_rbfsvm21', clf_rbfsvm21))
+	# clf_rbfsvm31 = svm.SVC(kernel='rbf', gamma=100, C=100000)
+	# supervised_models.append(('clf_rbfsvm31', clf_rbfsvm31))
+	clf_rbfsvm41new2 = svm.SVC(kernel='rbf', gamma=150, C=110000)
+	supervised_models.append(('clf_rbfsvm41new2', clf_rbfsvm41new2))
+	# clf_rbfsvm51 = svm.SVC(kernel='rbf', gamma=100, C=110000)
+	# supervised_models.append(('clf_rbfsvm51', clf_rbfsvm51))
+
 	# clf_rbfsvmbest_3 = svm.SVC(kernel='rbf', gamma=100, C=100000)
 	# supervised_models.append(('rbfsvmbest_3', clf_rbfsvmbest_3))
 
